@@ -1,0 +1,32 @@
+:root{
+  --ink: #15161A;
+  --sleeve: #1F2026;
+  --groove: #2E3038;
+  --line: #3A3D47;
+  --cream: #F2EAD7;
+  --muted: #A7A29A;
+  --gold: #F0B600;
+  --teal: #58CDB9;
+  --red: #F28B82;
+}
+
+body{
+  margin: 0;
+  background: var(--ink);
+  color: var(--cream);
+  font-family: Barlow, system-ui, sans-serif;
+}
+
+a{
+  color: var(--gold);
+}
+
+a:hover{
+  color: #FFD24D;
+  text-decoration: none;
+}
+
+h1, h2, h3{
+  font-family: 'Barlow Condensed', sans-serif;
+  text-transform: uppercase;
+}

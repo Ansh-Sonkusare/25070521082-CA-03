@@ -1,0 +1,17 @@
+services:
+  mongo:
+    image: mongo:7
+    container_name: music-mongo
+    restart: unless-stopped
+    ports:
+      - "27018:27017"
+    volumes:
+      - music-mongo-data:/data/db
+    healthcheck:
+      test: ["CMD", "mongosh", "--quiet", "--eval", "db.adminCommand('ping')"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  music-mongo-data:
