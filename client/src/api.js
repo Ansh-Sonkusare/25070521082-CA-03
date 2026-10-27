@@ -35,9 +35,10 @@ export const apiRequest = async (path,options = {}) =>{
 
     const data = await response.json().catch(() => ({}));
 
-    if( response.status === 401 ){
+    if( response.status === 401 && token ){
 
         clearLogin();
+        window.dispatchEvent(new Event("logout"));
     }
 
     if( !response.ok ){

@@ -1,10 +1,12 @@
 import { Navigate,useNavigate } from 'react-router-dom';
 import { apiRequest,getToken } from './api';
 import AlbumForm from './homeComp/albumForm';
+import { useToast } from './uiContext';
 
 const AddAlbum = () =>{
 
     const navigate = useNavigate();
+    const toast = useToast();
 
     if( !getToken() ){
 
@@ -14,7 +16,8 @@ const AddAlbum = () =>{
     const createAlbum = async (album) =>{
 
         await apiRequest("/create",{method : "POST", body : album});
-        navigate("/");
+        toast('"' + album.title + '" added to the collection');
+        navigate("/collection");
     }
 
     return (

@@ -2,11 +2,13 @@ import { useEffect,useState } from 'react';
 import { Navigate,useNavigate,useParams } from 'react-router-dom';
 import { apiRequest,getToken } from './api';
 import AlbumForm from './homeComp/albumForm';
+import { useToast } from './uiContext';
 
 const EditAlbum = () =>{
 
     const {id} = useParams();
     const navigate = useNavigate();
+    const toast = useToast();
     const [album,setAlbum] = useState(null);
     const [error,setError] = useState("");
 
@@ -24,8 +26,9 @@ const EditAlbum = () =>{
 
     const updateAlbum = async (updated) =>{
 
-        const {title,artist,genre,releaseYear,tracks,rating,status} = updated;
-        await apiRequest("/update/" + id,{method : "PUT", body : {title,artist,genre,releaseYear,tracks,rating,status}});
+        const {title,artist,genre,releaseYear,tracks,rating,status,prices} = updated;
+        await apiRequest("/update/" + id,{method : "PUT", body : {title,artist,genre,releaseYear,tracks,rating,status,prices}});
+        toast("Changes saved");
         navigate("/album/" + id);
     }
 

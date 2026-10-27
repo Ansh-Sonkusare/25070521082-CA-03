@@ -3,7 +3,11 @@
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
+    "db": "docker compose -f ../docker-compose.yml up -d --wait",
+    "seed": "npm run db && node server.js --seed",
+    "prestart": "npm run db",
     "start": "node server.js",
+    "predev": "npm run db",
     "dev": "nodemon server.js"
   },
   "keywords": [],
